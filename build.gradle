@@ -14,7 +14,7 @@ jacoco {
 		toolVersion = "0.8.5"
 	}
 
-group 'APOLLO-EE-CORE'
+group 'ChristianChiste-EE-CORE'
 version '1.0-SNAPSHOT'
 
 
