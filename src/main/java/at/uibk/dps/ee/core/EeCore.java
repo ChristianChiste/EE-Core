@@ -1,5 +1,6 @@
 package at.uibk.dps.ee.core;
 
+import java.util.List;
 import java.util.Set;
 
 import com.google.gson.JsonObject;
@@ -58,7 +59,8 @@ public class EeCore {
     try {
       enactableRoot.play();
       final JsonObject outputData = enactableRoot.getResult();
-      outputDataHandler.handleOutputData(outputData);
+      final List<Integer> executionData = ExecutionData.data;
+      outputDataHandler.handleOutputData(outputData, executionData);
     } catch (StopException stopException) {
       // The root should never throw exceptions.
       throw new FailureException(stopException);

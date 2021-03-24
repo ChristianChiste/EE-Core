@@ -42,7 +42,7 @@ public class EeCoreTest {
       EeCore tested =
           new EeCore(inputProviderMock, outputDataHandler, enactableProvider, enactmentListeners);
       tested.enactWorkflow();
-      verify(outputDataHandler).handleOutputData(mockOutput);
+      verify(outputDataHandler).handleOutputData(mockOutput, ExecutionData.data);
       verify(mockListener).enactmentStarted();
       verify(mockListener).enactmentTerminated();
     } catch (FailureException | StopException stopExc) {
