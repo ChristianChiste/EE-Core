@@ -1,8 +1,5 @@
 package at.uibk.dps.ee.core;
 
-import java.util.List;
-import java.util.Map;
-
 import com.google.gson.JsonObject;
 
 /**
@@ -16,9 +13,7 @@ public interface OutputDataHandler {
   /**
    * Handles the output data produced as the result of the execution.
    * 
-   * @param outputData
-   * @param executionData 
+   * @param outputData 
    */
-  void handleOutputData(JsonObject outputData, Map<String, Long> executionStartTimes,
-      Map<String, Long> executionEndTimes);
+  void handleOutputData(JsonObject outputData);
 }

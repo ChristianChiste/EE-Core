@@ -1,15 +1,28 @@
 package at.uibk.dps.ee.core;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 
 public final class ExecutionData {
 
-  public static final Map<String,Long> startTimes = new HashMap<String,Long>();
-  public static final Map<String,Long> endTimes = new HashMap<String,Long>();
+  public static final MultiValuedMap<String,Long> startTimes = new ArrayListValuedHashMap<String,Long>();
+  public static final MultiValuedMap<String,Long> endTimes = new ArrayListValuedHashMap<String,Long>();
+  public static final MultiValuedMap<String,ResourceType> resourceType = new ArrayListValuedHashMap<String,ResourceType>();
+  //public static double failRate;
+  //public static SchedulingType schedulingType;
+
 
   private ExecutionData() {}
-
+  
+  public enum ResourceType{
+    Amazon,
+    IBM,
+    Local
+  }
+  
+  public enum SchedulingType{
+    Dynamic,
+    StaticSingle,
+    StaticAll
+  }
 }

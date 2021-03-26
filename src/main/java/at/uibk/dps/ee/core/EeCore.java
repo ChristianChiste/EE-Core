@@ -1,11 +1,10 @@
 package at.uibk.dps.ee.core;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import com.google.gson.JsonObject;
 
+import at.uibk.dps.ee.core.ExecutionData.ResourceType;
 import at.uibk.dps.ee.core.enactable.EnactableRoot;
 import at.uibk.dps.ee.core.enactable.EnactmentStateListener;
 import at.uibk.dps.ee.core.exception.FailureException;
@@ -58,11 +57,12 @@ public class EeCore {
       stateListener.enactmentStarted();
     }
     try {
+      ExecutionData.resourceType.put("workflow",ResourceType.Local);
+      ExecutionData.startTimes.put("workflow", System.nanoTime());
       enactableRoot.play();
       final JsonObject outputData = enactableRoot.getResult();
-      final Map<String,Long> executionStartTimes = ExecutionData.startTimes;
-      final Map<String,Long> executionEndTimes = ExecutionData.endTimes;
-      outputDataHandler.handleOutputData(outputData, executionStartTimes, executionEndTimes);
+      ExecutionData.endTimes.put("workflow", System.nanoTime());
+      outputDataHandler.handleOutputData(outputData);
     } catch (StopException stopException) {
       // The root should never throw exceptions.
       throw new FailureException(stopException);
