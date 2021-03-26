@@ -11,7 +11,6 @@ public final class ExecutionData {
   //public static double failRate;
   //public static SchedulingType schedulingType;
 
-
   private ExecutionData() {}
   
   public enum ResourceType{
