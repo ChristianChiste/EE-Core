@@ -9,7 +9,7 @@ public final class ExecutionData {
   public static final MultiValuedMap<String,Long> endTimes = new ArrayListValuedHashMap<String,Long>();
   public static final MultiValuedMap<String,ResourceType> resourceType = new ArrayListValuedHashMap<String,ResourceType>();
   public static double failRate;
-  public static SchedulingType schedulingType;
+  public static String schedulingType;
 
   private ExecutionData() {}
   
@@ -17,11 +17,5 @@ public final class ExecutionData {
     Amazon,
     IBM,
     Local
-  }
-  
-  public enum SchedulingType{
-    Dynamic,
-    StaticSingle,
-    StaticAll
   }
 }
