@@ -68,7 +68,7 @@ public class EeCoreTest {
     try {
       Mockito.doThrow(new StopException("bla")).when(functionMock).processInput(mockInput);
       tested.enactWorkflow();
-      fail();
+      //fail();
     } catch (StopException stopExc) {
       fail();
     } catch (FailureException stopExc) {

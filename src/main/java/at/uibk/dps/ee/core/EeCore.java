@@ -39,7 +39,7 @@ public class EeCore {
     this.inputDataProvider = inputDataProvider;
     this.outputDataHandler = outputDataHandler;
     this.enactableProvider = enactableProvider;
-    this.stateListeners = stateListeners;
+    this.stateListeners = stateListeners; 
   }
 
   /**
@@ -56,17 +56,20 @@ public class EeCore {
     for (final EnactmentStateListener stateListener : stateListeners) {
       stateListener.enactmentStarted();
     }
+    ExecutionData.resourceType.put("workflow",ResourceType.Local);
+    ExecutionData.startTimes.put("workflow", System.nanoTime());
     try {
-      ExecutionData.resourceType.put("workflow",ResourceType.Local);
-      ExecutionData.startTimes.put("workflow", System.nanoTime());
-      enactableRoot.play();
+      enactableRoot.play();     
       final JsonObject outputData = enactableRoot.getResult();
       ExecutionData.endTimes.put("workflow", System.nanoTime());
       outputDataHandler.handleOutputData(outputData);
     } catch (StopException stopException) {
-      // The root should never throw exceptions.
-      throw new FailureException(stopException);
+      ExecutionData.endTimes.put("workflow", -1L);
+      outputDataHandler.handleOutputData(new JsonObject());
     }
+    ExecutionData.startTimes.clear();
+    ExecutionData.endTimes.clear();
+    ExecutionData.resourceType.clear();
     for (final EnactmentStateListener stateListener : stateListeners) {
       stateListener.enactmentTerminated();
     }
