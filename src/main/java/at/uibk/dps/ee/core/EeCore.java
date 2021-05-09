@@ -57,6 +57,7 @@ public class EeCore {
       stateListener.enactmentStarted();
     }
     ExecutionData.resourceType.put("workflow",ResourceType.Local);
+    ExecutionData.resourceRegion.put("workflow", "Local");
     ExecutionData.startTimes.put("workflow", System.nanoTime());
     try {
       enactableRoot.play();     
