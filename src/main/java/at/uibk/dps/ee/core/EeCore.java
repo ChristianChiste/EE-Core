@@ -66,12 +66,15 @@ public class EeCore {
     } catch (StopException stopException) {
       ExecutionData.endTimes.put("workflow", -1L);
       outputDataHandler.handleOutputData(new JsonObject());
+      throw new FailureException(stopException);
     }
-    ExecutionData.startTimes.clear();
-    ExecutionData.endTimes.clear();
-    ExecutionData.resourceType.clear();
-    for (final EnactmentStateListener stateListener : stateListeners) {
-      stateListener.enactmentTerminated();
+    finally {
+      ExecutionData.startTimes.clear();
+      ExecutionData.endTimes.clear();
+      ExecutionData.resourceType.clear();
+      for (final EnactmentStateListener stateListener : stateListeners) {
+        stateListener.enactmentTerminated();
+      }
     }
   }
 }

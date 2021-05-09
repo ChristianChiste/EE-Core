@@ -14,6 +14,7 @@ public final class ExecutionData {
   public static final MultiValuedMap<String,Long> startTimes = new ArrayListValuedHashMap<String,Long>();
   public static final MultiValuedMap<String,Long> endTimes = new ArrayListValuedHashMap<String,Long>();
   public static final MultiValuedMap<String,ResourceType> resourceType = new ArrayListValuedHashMap<String,ResourceType>();
+  public static final MultiValuedMap<String,String> resourceRegion = new ArrayListValuedHashMap<String,String>();
   public static double failRate;
   public static String schedulingType;
   public static String workflowName;
